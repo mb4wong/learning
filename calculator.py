@@ -5,21 +5,42 @@
 
 ##### VERSION 1
 
-print("Please enter your first integer: ")
-num_1 = int(input())
-print("Your first number is", num_1,". Please input your second integer: ")
-num_2 = int(input())
-print("Your two numbers are:", num_1, "and", num_2,". What arithmetic operation would you like to perform with these two?")
-print("Type 1 for addition\nType 2 for subtraction\nType 3 for multiplication\nType 4 for division")
-operation = int(input())
-if operation == 1:
-    print(num_1, "+", num_2, "=", num_1 + num_2)
-elif operation == 2:
-    print(num_1, "-", num_2, "=", num_1 - num_2)
-elif operation == 3:
-    print(num_1, "*", num_2, "=", num_1 * num_2)
-elif operation == 4:
-    print(num_1, "/", num_2, "=", num_1 / num_2)
-else:
-    print("Boy you dumb you didn't follow the instructions")
+def calculator():
+    print("This is my first calculator")
 
+    try:
+        num_1 = float(input("Enter your first number: "))
+        num_2 = float(input("Enter your second number: "))
+    except ValueError:
+        print("Invalid input. Please enter valid numers.")
+        return
+    
+    print("Choose an operation:")
+    print("1 for addition")
+    print("2 for subtraction")
+    print("3 for multiplication")
+    print("4 for division")
+
+    operation = input("Enter the operation number: ")
+
+    if operation not in ['1', '2', '3', '4']:
+        print("Invalid operation. Please choose a valid operation.")
+        return
+    
+    if operation == '1':
+        result = num_1 + num_2
+        operator = '+'
+    elif operation == '2':
+        result = num_1 - num_2
+        operator = '-'
+    elif operation == '3':
+        result = num_1 * num_2
+        operator = '*'
+    else:
+        if num_2 == 0:
+            print("Error: Division byu zero.")
+            return
+        result = num-1 / num_2
+        operator = '/'
+
+    print(f"{num_1} {operator} {num_2} = {result}")
