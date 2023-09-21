@@ -40,7 +40,10 @@ def calculator():
         if num_2 == 0:
             print("Error: Division byu zero.")
             return
-        result = num-1 / num_2
+        result = num_1 / num_2
         operator = '/'
 
     print(f"{num_1} {operator} {num_2} = {result}")
+
+if __name__ == "__main__":
+    calculator()
