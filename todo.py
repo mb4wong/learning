@@ -5,6 +5,8 @@
 # - Incomplete tasks have been added by user but not marked complete or removed. They are typically displayed.
 # - Completed tasks are ones that are marked complete by the user but not deleted. They remain in-app, but are not displayed unless requested.
 # - Removed tasks are ones that the user marks for deletion. They are deleted from memory. Users are prompted if they are sure they want them to be deleted.
+# - BONUS TASK 1: USER/LOG-IN BASED TASKS THINGS
+# - BONUS TASK 2: SIMPLIFY UI WITHOUT NEED FOR NUMBERS
 
 tasks = []
 completed_tasks = []
