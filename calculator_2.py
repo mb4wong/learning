@@ -51,7 +51,7 @@ def calculator():
         operator = '*'
     else:
         if num_2 == 0:
-            print("Error: Division byu zero.")
+            print("Error: Division by zero.")
             return
         result = num_1 / num_2
         operator = '/'
