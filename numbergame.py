@@ -10,39 +10,38 @@ def play_level(difficulty, range_max):
     level_attempts = 0
     level_wins = 0
 
+    os.system('clear')
+    if level_attempts == 0:
+        print(f"Welcome to the {difficulty.upper()} level")
+        print("This is your first attempt! Let's go!")
+    else:
+        print(f"Welcome to the {difficulty.upper()} level")
+        print(f"You've currently gotten {level_wins} correct out of {level_attempts} in the {difficulty.upper()} level.")
+    
     while True:
-        os.system('clear')
-        if level_attempts == 0:
-            print(f"Welcome to the {difficulty.upper()} level")
-            print("This is your first attempt! Let's go!")
-        else:
-            print(f"Welcome to the {difficulty.upper()} level")
-            print(f"You've currently gotten {level_wins} correct out of {level_attempts} in the {difficulty.upper()} level.")
+        target_number = random.randint(0, range_max)
+
+        user_guess = input(f"Please enter your guess. The range is between 0 and {range_max}: ").lower()
+        level_attempts += 1
+
+        if user_guess == "end":
+            print("Taking you back to the menu...")
+            os.system('clear')
+            return level_attempts, level_wins
         
-        while True:
-            target_number = random.randint(0, range_max)
+        try:
+            user_guess = int(user_guess)
+        except ValueError:
+            print("Please enter a valid number or 'END' to return to the menu.")
+            continue
 
-            user_guess = input(f"Please enter your guess. The range is between 0 and {range_max}: ").lower()
-            level_attempts += 1
-
-            if user_guess == "end":
-                print("Taking you back to the menu...")
-                os.system('clear')
-                return level_attempts, level_wins
-            
-            try:
-                user_guess = int(user_guess)
-            except ValueError:
-                print("Please enter a valid number or 'END' to return to the menu.")
-                continue
-
-            if user_guess < 0 or user_guess > range_max:
-                print("Number out of range. You lose.")
-            elif user_guess == target_number:
-                print(f"Congrats! {user_guess} was the right number!")
-                level_wins += 1
-            else:
-                print(f"Sorry, {user_guess} was not the right number. It was actually {target_number}")
+        if user_guess < 0 or user_guess > range_max:
+            print("Number out of range. You lose.")
+        elif user_guess == target_number:
+            print(f"Congrats! {user_guess} was the right number!")
+            level_wins += 1
+        else:
+            print(f"Sorry, {user_guess} was not the right number. It was actually {target_number}")
 
 def main():
     print("Welcome to the number guesser game!")
