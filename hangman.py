@@ -24,11 +24,12 @@ def get_word_list():
         return words
     else:
         os.system('clear')
-        print(f"Failed to Initiate game. Status code: {response.status_code}")
+        print(f"Failed to get list of words. Status code: {response.status_code}")
 
 def get_random_word(words):
     random_word = random.choice(words)
     unique_letters = set(random_word.lower())
+    return random_word, unique_letters
 
 def display_word(word, guessed_letters):
     displayed_word = ""
@@ -42,13 +43,11 @@ def display_word(word, guessed_letters):
 def hangman():
     print("Welcome to the hangman game!")
     get_word_list()
-
-    random_word = get_random_word(words)
+    random_word, unique_letters = get_random_word(words)
     guessed_letters = set()
     lives = 10
-    unique_letters = set(random_word.lower())
 
-    while lives > 0:
+    while lives > 0 and len(unique_letters) > 0:
         displayed = display_word(random_word, guessed_letters)
         print(displayed)
         print(f"You have {lives} lives left!")
@@ -67,21 +66,17 @@ def hangman():
 
         if guess in random_word:
             print(f"Good guess! '{guess}' is in the word.\n")
+            unique_letters.remove(guess)
         else:
             print(f"Sorry, '{guess}' is not in the word.\n")
             lives -= 1
-
-        if not unique_letters:
-            print(f"Congratulations! You guessed the word: {random_word}")
-            break
-
-#        if displayed == random_word:
-#            print(f"Congratulations! You guessed the word: {random_word}")
-#            break
     
     if lives <= 0:
         print("Out of lives! You lost.")
         print(f"The word was {random_word}")
+    
+    if len(unique_letters) == 0:
+        print(f"Congrats! You've guessed the right word which was {random_word}")
 
 if __name__ == "__main__":
     hangman()
