@@ -50,7 +50,7 @@ def hangman():
     while lives > 0 and len(unique_letters) > 0:
         displayed = display_word(random_word, guessed_letters)
         print(displayed)
-        print(f"You have {lives} lives left!")
+        print(f"Lives: {'❤' * lives}")
 
         guess = input("Guess a letter: ").lower()
 
